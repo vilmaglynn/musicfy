@@ -1,13 +1,15 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
 body {
-  background-color: #eee;
+  background-color: #000000;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
+  background-image: url(/assets/images/background\ image.png);
+
 }
 
 .height {
-  height: 100vh;
+  height: 20vh;
 }
 
 .search {
@@ -38,8 +40,81 @@ body {
   right: 5px;
   height: 50px;
   width: 110px;
-  background: blue;
+  background: rgb(34, 165, 94);
+  border: rgb(34, 165, 94);
+  border-radius: 12px;
 }
 
-.container {
+/* .right-container {
+  display: flex;
+  justify-content: flex-end;
+} */
+
+.search-btn {
+  margin-top: 25px;
+  border-radius: 20px;
+}
+
+.form {
+  border-radius: 25px !important;
+}
+
+#hero-bg {
+  background-color:rgb(34, 165, 94)!important;
+  /* font-style: bold !important; */ /* Incorrect property */
+}
+
+.musicfy-header {
+  color: rgb(0, 0, 0) !important;
+  font-size: 70px !important;
+  text-align: left !important;
+  padding-left: 20px !important;
+  margin-left: 50px !important;
+  font-weight:800;
+}
+
+.main-container {
+  width: 100%; /* Ensure the main container takes up the full width of its parent */
+  height: 500px;
+  display: flex; 
+  justify-content: space-between; /* Separate the left and right containers */
+  align-items: flex-start; /* Align items at the top within the main container */
+  border-radius: 25px !important;
+}
+
+.left-half,
+.right-half {
+  width: 48%;
+  padding: 10px; /* Add padding to create space inside the containers */
+  border: 4px solid #ccc;
+  border-radius: 25px;
+  text-align: center;
+  margin-top: 50px;
+  height: 800px;
+  align-items: center;
+  justify-content: center;
+  background-color:  rgb(255, 255, 255) !important;
+  opacity: 0.5;
+
+}
+
+  /* Cards */
+  
+.card-container {
+  display: flex;
+  align-items: ;
+  justify-content: ;
+}
+
+.card-a {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-b {
+  display: flex;
+  flex-direction: column;
+  justify-content: ;
+  align-content: flex-end;
 }

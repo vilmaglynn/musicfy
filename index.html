@@ -13,30 +13,101 @@
 
   <body>
     <!-- Header -->
-    <header class="bg-primary text-white text-center py-4">
-      <h1>Musicfy</h1>
+    <header class="bg-primary text-white text-center py-4" id="hero-bg">
+      <h1 class="musicfy-header">Musicfy 🦜</h1>
     </header>
 
+	  	<!-- Search Button-->
+
+		<div class="search-btn">
+
+			<div class="row height d-flex justify-content-center align-items-start">
+	
+				<div class="col-md-8">
+	
+					<form id="search-form" class="search">
+						<i class="fa fa-search"></i>
+						<input type="text" id="search-input" class="form-control"
+							placeholder="Search Your Favourite Artist">
+						<button type="submit" id="search-button" class="btn btn-primary">Search</button>
+					</form>
+	
+				</div>
+	
+			</div>
+		</div>
+
+	<!-- Containers -->
+
+	<div class="container main-container">		
+		<div class="container left-half">
+		  <div>I am left container for music</div>
+		</div>  
+
+		<div class="container right-half">
+			<div>I am right container for news</div>
+
+			  <div class="card-container">
+	
+				  <div class="card card-a" style="width: 18rem;">
+					<div class="card-body">
+					  <h5 class="card-title">Special title treatment</h5>
+					  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					  <a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				  </div>
+	
+				  <div class="card card-a" style="width: 18rem;">
+					<div class="card-body">
+					  <h5 class="card-title">Special title treatment</h5>
+					  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					  <a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				  </div>
+
+				  <div class="card card-b" style="width: 18rem;">
+					<div class="card-body">
+					  <h5 class="card-title">Special title treatment</h5>
+					  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					  <a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				  </div>
+
+				  <div class="card card-b" style="width: 18rem;">
+					<div class="card-body">
+					  <h5 class="card-title">Special title treatment</h5>
+					  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					  <a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				  </div>
+
+			  </div>
+
+
+		  </div>  
+	</div>
+
+
     <!-- Main Content -->
-    <div class="container mt-4">
-      <div class="row">
+    <!-- <div class="container mt-4 left-container">
+      <div class="row"> -->
         <!-- Left Container -->
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="jumbotron">
             <h2>Left Container</h2>
             <p>This is the content on the left side.</p>
           </div>
-        </div>
+        </div> -->
 
         <!-- Right Container -->
-        <div class="col-md-8">
+        <!-- <div class="container col-md-4 right-container">
           <div class="jumbotron">
             <h2>Right Container</h2>
             <p>This is the content on the right side.</p>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Include Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
