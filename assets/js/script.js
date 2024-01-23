@@ -5,7 +5,7 @@ $(document).ready(function () {
   const settings = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "54c8dfbd4dmshc1bdeeb54f4a2cfp151f6djsn268c474afaf3",
+      "X-RapidAPI-Key": "e913f3ef8emsh776ddc5b5ecbbf6p1291ffjsn57259e810f11",
       "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com",
     },
   };
@@ -56,8 +56,7 @@ $(document).ready(function () {
     // Create an array of top tracks with name and a random image URL
     let topTracksArray = discography.map(function (track) {
       // Get a random album cover URL
-      let randomTrackImage =
-        track.album.cover[Math.floor(Math.random() * track.album.cover.length)];
+      let randomTrackImage = track.album.cover[Math.floor(Math.random() * track.album.cover.length)];
 
       return {
         trackImage: randomTrackImage.url,
@@ -71,9 +70,7 @@ $(document).ready(function () {
 
     // Create HTML elements and append them to the left container
     let heroContainer = $("<div class='hero-container'>");
-    heroContainer.append(
-      `<img class="hero-image" src="${artistImage}" alt="${artistName}">`
-    );
+    heroContainer.append(`<img class="hero-image" src="${artistImage}" alt="${artistName}">`);
     heroContainer.append(`<div class="overlay"></div>`);
     heroContainer.append(`<div class="hero-text">${artistName}</div>`);
     // Append the hero image to the herocontainer
@@ -88,9 +85,7 @@ $(document).ready(function () {
       trackList.append(
         `<div class="flex-container"> 
         <div class="flex-item">${index + 1}</div> 
-        <div class="flex-item"> <img class="track-image " src="${
-          track.trackImage
-        }"></div>
+        <div class="flex-item"> <img class="track-image " src="${track.trackImage}"></div>
         <div class="flex-item">${track.trackName}</div> 
         <div class="flex-item">${track.trackLength}</div> 
         <div class="flex-item"><a href="${song}" target="_blank">Go to playlist</a></div>
@@ -99,10 +94,7 @@ $(document).ready(function () {
     });
 
     // Append the entire list to the track container
-    $("<p>")
-      .text("Popular Songs")
-      .addClass("track-header")
-      .appendTo(trackContainer);
+    $("<p>").text("Popular Songs").addClass("track-header").appendTo(trackContainer);
 
     trackContainer.append(trackList);
 
@@ -111,8 +103,118 @@ $(document).ready(function () {
   }
 
   // loadFromLocalStorage();
-  $("#search-form").submit(function (event) {
+  $("#searchForm").submit(function (event) {
     event.preventDefault();
     getArtistDataByName();
   });
+
+  // right container js code
+
+  // New York Times API key and initialize the keyword with the last search term from localStorage or an empty string
+  const apiKey = "1BKwuA8RAsCAYeeHCHUSDnV2SOhrOL48";
+  // Get the last search input from localStorage or default to an empty string
+  let keyword = localStorage.getItem("searchKeyword") || "";
+  const pageSize = 6;
+
+  // Get HTML elements using their IDs
+  const searchInput = document.getElementById("searchButton");
+  const searchButton = document.getElementById("search-input");
+  const articlesContainer = document.getElementById("articlesContainer");
+
+  // Function to fetch articles based on the current search
+  const fetchArticles = (searchTerm) => {
+    // API URL with the keyword and API key
+    const queryURL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&api-key=${apiKey}`;
+
+    // Fetch data from the API
+    fetch(queryURL)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // Display the fetched articles
+        displayArticles(data.response.docs);
+        // Save the current keyword to localStorage
+        localStorage.setItem("searchKeyword", searchTerm);
+      })
+      .catch((error) => {
+        console.error("Error fetching articles:", error);
+      });
+  };
+
+  // Function to display articles in the HTML
+  const displayArticles = (articles) => {
+    if (articles && articles.length > 0) {
+      // Clear the articles container
+      articlesContainer.innerHTML = "";
+
+      // Use pageSize variable to control the number of articles displayed
+      const articlesToDisplay = articles.slice(0, pageSize);
+
+      // Iterate through articles, creating Bootstrap cards and get them into rows
+      for (let i = 0; i < articlesToDisplay.length; i += 2) {
+        const row = document.createElement("div");
+        row.classList.add("row", "mb-4");
+
+        const col1 = document.createElement("div");
+        col1.classList.add("col-md-6");
+
+        // Create a card for the first article
+        const card1 = createCard(articlesToDisplay[i]);
+        col1.appendChild(card1);
+
+        const col2 = document.createElement("div");
+        col2.classList.add("col-md-6");
+
+        // Create a card for the second article
+        const card2 = createCard(articlesToDisplay[i + 1]);
+        col2.appendChild(card2);
+
+        // Add columns to the row
+        row.appendChild(col1);
+        row.appendChild(col2);
+
+        // Add the row to the articles container
+        articlesContainer.appendChild(row);
+      }
+    }
+  };
+
+  // Function to create a Bootstrap card for an article
+  const createCard = (article) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    const date = new Date(article.pub_date);
+
+    card.innerHTML = `
+    <div class="card-body">
+      <h4 class="card-title">${article.headline.main}</h4>
+      <p class="card-text">${date.toDateString()}</p>
+      <a href="${article.web_url}" target="_blank" class="btn btn-primary">Read Full Article</a>
+    </div>
+  `;
+
+    return card;
+  };
+
+  // Unified search function for both button click and Enter key press
+  const handleSearch = () => {
+    // const searchTerm = searchInput.value.trim();
+    const searchTerm = artistInput.val();
+    console.log(searchTerm);
+
+    if (searchTerm !== "") {
+      fetchArticles(searchTerm);
+    } else {
+      console.error("Please enter a keyword before searching.");
+    }
+  };
+
+  // Event listener for the search button click
+  $("#searchForm").submit(function (e) {
+    e.preventDefault();
+    handleSearch();
+  });
+
+  // Initial fetch when the page loads
 });
