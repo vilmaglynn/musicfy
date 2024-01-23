@@ -1,29 +1,61 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
 body {
-  background-color: #eee;
+  background-color: #cf2f2f;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
+  border: 0;
+  margin: 0;
+}
+
+h3 {
+  font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h3:hover {
+  text-decoration: line-through;
+  font-style: italic;
+  color: #165526;
+}
+
+#hero-bg {
+  /* background-color: rgb(34, 165, 94) !important; */
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(14, 1, 1, 1) 0%,
+    rgba(13, 1, 1, 1) 25%,
+    rgba(14, 69, 26, 1) 45%,
+    rgba(1, 1, 24, 1) 100%,
+    rgba(18, 64, 6, 1) 100%
+  );
+  /* border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px; */
+  /* border-top-right-radius: 30px;
+  border-top-left-radius: 30px; */
+  border-bottom: 3px solid white;
 }
 
 .height {
-  height: 100vh;
+  height: 20vh;
 }
 
 .search {
   position: relative;
   box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .search input {
   height: 60px;
   text-indent: 25px;
-  border: 2px solid #d6d4d4;
+  border-radius: 35px;
 }
 
 .search input:focus {
   box-shadow: none;
-  border: 2px solid blue;
+  border: 2px solid #000000;
 }
 
 .search .fa-search {
@@ -38,7 +70,136 @@ body {
   right: 5px;
   height: 50px;
   width: 110px;
-  background: blue;
+  background: rgb(11, 11, 68);
+  border-radius: 25px;
+  border: none !important;
+}
+
+.search button:hover {
+  background: #0e3f1a;
+  border: none !important;
+}
+
+.search-btn {
+  margin-top: 70px;
+  border-radius: 50px !important;
+}
+
+.form {
+  border-radius: 30px !important;
+}
+
+.musicfy-header {
+  color: white !important;
+  font-size: 70px !important;
+  text-align: left !important;
+  padding-left: 20px !important;
+  margin-left: 50px !important;
+  font-weight: 800;
+}
+
+.main-container {
+  width: 100%; /* Ensure the main container takes up the full width of its parent */
+  /* height: 500px; */
+  display: flex;
+  justify-content: space-between; /* Separate the left and right containers */
+  align-items: flex-start; /* Align items at the top within the main container */
+  border-radius: 25px !important;
+  border: 10px solid green;
+}
+
+.left-half,
+.right-half {
+  width: 50%;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 50px;
+  height: 800px;
+  align-items: center;
+  justify-content: center;
+  /* background-color: rgb(255, 255, 255) !important; */
+  background-color: #070707 !important;
+  color: white !important;
+  /* border: 1px solid white; */
+}
+
+/* Cards */
+
+.card-container {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  text-align: center;
+}
+
+.card {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+}
+
+.news-button {
+  background-color: #0e3f1a;
+  color: rgb(52, 225, 130);
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: white;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.button-one {
+  background-color: #0e3f1a;
+  color: rgb(46, 194, 113);
+}
+
+/* .button-two {
+  background-color: rgb(95, 26, 97);
+  color: white;
+  
+}
+
+.button-three {
+  background-color: rgb(119, 200, 227);
+  color: white;
+  border: none;
+  font-weight: 500;
+}
+
+.button-four {
+  background-color: rgb(203, 161, 10);
+  color: white;
+  border: none;
+}
+
+.button-five {
+  background-color: #0e3f1a;
+  color: white;
+  border: none;
+}
+
+.button-six {
+  background-color: #951212;
+  color: white;
+  border: none;
+} */
+
+.news-button:hover {
+  background: #0e3f1a !important;
+  border: none;
+}
+
+.card-title {
+  color: rgb(20, 20, 112);
+  font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.card-text {
+  font-weight: lighter;
+  font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* =================================== */
