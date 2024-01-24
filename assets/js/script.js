@@ -44,6 +44,7 @@ $(document).ready(function () {
     searchHistoryContainer.empty();
     searchHistory.forEach((artist) => {
       const searchBtn = $("<button>");
+      searchBtn.addClass("btn btn-secondary");
       searchBtn.text(artist);
       searchHistoryContainer.append(searchBtn);
     });
