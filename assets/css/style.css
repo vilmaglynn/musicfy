@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
 body {
-  background-color: #cf2f2f;
+  background-color: #000000;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   border: 0;
@@ -25,7 +25,7 @@ h3:hover {
   border-bottom-right-radius: 30px; */
   /* border-top-right-radius: 30px;
   border-top-left-radius: 30px; */
-  border-bottom: 3px solid white;
+  /* border-bottom: 3px solid white; */
 }
 
 .height {
@@ -73,7 +73,7 @@ h3:hover {
 }
 
 .search-btn {
-  margin-top: 70px;
+  margin-top: 30px;
   border-radius: 50px !important;
 }
 
@@ -91,29 +91,38 @@ h3:hover {
 }
 
 .main-container {
-  width: 100%; /* Ensure the main container takes up the full width of its parent */
+  width: 100% !important; /* Ensure the main container takes up the full width of its parent */
   /* height: 500px; */
   display: flex;
   justify-content: space-between; /* Separate the left and right containers */
   align-items: flex-start; /* Align items at the top within the main container */
   border-radius: 25px !important;
-  border: 10px solid green;
+  flex: 0 0 100%;
+  /*border: medium dashed green !important;*/
+  padding: 0% !important;
+  /*min-width: min-content !important;*/
+  /*flex-grow: 2;*/
 }
 
 .left-half,
 .right-half {
-  width: 50%;
-  padding: 10px;
-  border-radius: 5px;
+  width: calc(50% - 25px);
+  border-radius: 25px;
   text-align: center;
   margin-top: 50px;
   height: 800px;
   align-items: center;
   justify-content: center;
   /* background-color: rgb(255, 255, 255) !important; */
-  background-color: #070707 !important;
+  background-color: #1E1E1E !important;
   color: white !important;
   /* border: 1px solid white; */
+  /*min-width: min-content !important;
+  flex-grow: 2;*/
+}
+
+.left-half {
+  margin-left: 15px;
 }
 
 /* Cards */
@@ -206,7 +215,7 @@ h3:hover {
 }
 
 .flex-container a {
-  color: rgb(32, 155, 32);
+  color: rgb(39, 39, 39);
   text-decoration: none;
   font-weight: 900;
 }
@@ -282,4 +291,39 @@ h3:hover {
   font-size: 100px;
   margin: 0;
   background-color: rgba(47, 48, 47, 0.84);
+}
+
+.hero-image {
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
+.card-body {
+  height: 386px;
+}
+
+.hero-text {
+  margin-top: 200px;
+  font-size: 30px;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.flex-container a {
+  color: #f9fafb !important;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+/* .btn-primary {
+  display: flex;
+  justify-content: flex-end !important;
+  align-items: flex-end !important;
+}  DOESNT WORK*/
+
+
+/*@media (max-width: 797px) {
+  body { 
+      padding-left: 0px;
+      padding-right: 0px;
+  }
 }
