@@ -1,6 +1,7 @@
 $(document).ready(function () {
   const artistInput = $("#search-input");
   const leftContainer = $("#left-container"); // Container to display results
+  const searchHistoryContainer = $("#searchHistoryContainer");
 
   const settings = {
     method: "GET",
@@ -11,19 +12,43 @@ $(document).ready(function () {
   };
 
   // Function to save data to local storage
-  // function saveDataToLocalStorage(data) {
-  //   localStorage.setItem("artitstData", JSON.stringify(data));
-  // }
+  function saveDataToLS(artist) {
+    let artistHistory = JSON.parse(localStorage.getItem("artitstData")) || [];
+
+    const alreadyInHistory = artistHistory.find(
+      (artistFromLS) => artistFromLS === artist
+    );
+
+    if (!alreadyInHistory) {
+      artistHistory.unshift(artist);
+    }
+
+    if (artistHistory.length > 5) {
+      artistHistory.pop();
+    }
+
+    localStorage.setItem("artitstData", JSON.stringify(artistHistory));
+  }
 
   // Function to load data from local storage
-  // function loadFromLocalStorage() {
-  //   const storedData = JSON.parse(localStorage.getItem("displayedData"));
+  function loadFromLocalStorage() {
+    const artitstData = JSON.parse(localStorage.getItem("artitstData"));
 
-  //   if (storedData) {
-  //     // Display the stored data on the page
-  //     displayArtistData(storedData);
-  //   }
-  // }
+    if (artitstData) {
+      // Display the stored data on the page
+      renderSearchHistory(artitstData);
+    }
+  }
+
+  function renderSearchHistory(searchHistory) {
+    searchHistoryContainer.empty();
+    searchHistory.forEach((artist) => {
+      const searchBtn = $("<button>");
+      searchBtn.addClass("btn btn-secondary");
+      searchBtn.text(artist);
+      searchHistoryContainer.append(searchBtn);
+    });
+  }
 
   ///=======================================================
   //left container js code
@@ -36,6 +61,8 @@ $(document).ready(function () {
       .then((data) => {
         getArtistDataByID(data.id);
       });
+    saveDataToLS(artist);
+    loadFromLocalStorage();
   }
 
   function getArtistDataByID(artistID) {
@@ -252,6 +279,8 @@ $(document).ready(function () {
     e.preventDefault();
     handleSearch();
   });
+
+  loadFromLocalStorage();
 
   // Initial fetch when the page loads
 });
