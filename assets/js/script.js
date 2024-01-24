@@ -53,8 +53,12 @@ $(document).ready(function () {
     let artistImage = data.visuals.gallery[0][0].url;
     let song = data.shareUrl;
 
-    // Create an array of top tracks with name and a random image URL
-    let topTracksArray = discography.map(function (track) {
+
+    //Display 6 only by slicing - KN
+    let DiscographyLimited = discography.slice(0, 6);
+
+    // Create an array of top tracks with name and a random image URL - This has also been editd - KN
+    let topTracksArray = DiscographyLimited.map(function (track) {
       // Get a random album cover URL
       let randomTrackImage = track.album.cover[Math.floor(Math.random() * track.album.cover.length)];
 
@@ -92,6 +96,7 @@ $(document).ready(function () {
         </div> `
       );
     });
+
 
     // Append the entire list to the track container
     $("<p>").text("Popular Songs").addClass("track-header").appendTo(trackContainer);
