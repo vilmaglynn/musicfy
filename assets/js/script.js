@@ -5,7 +5,7 @@ $(document).ready(function () {
   const settings = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "e913f3ef8emsh776ddc5b5ecbbf6p1291ffjsn57259e810f11",
+      "X-RapidAPI-Key": "0eb6ded43cmsha5d707ccb45f409p13ce55jsn93085561e536",
       "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com",
     },
   };
@@ -24,6 +24,9 @@ $(document).ready(function () {
   //     displayArtistData(storedData);
   //   }
   // }
+
+  ///=======================================================
+  //left container js code
 
   function getArtistDataByName() {
     const artist = artistInput.val();
@@ -52,15 +55,13 @@ $(document).ready(function () {
     let discography = data.discography.topTracks;
     let artistImage = data.visuals.gallery[0][0].url;
     let song = data.shareUrl;
+    let biography = data.biography;
 
-
-    //Display 6 only by slicing - KN
-    let DiscographyLimited = discography.slice(0, 6);
-
-    // Create an array of top tracks with name and a random image URL - This has also been editd - KN
-    let topTracksArray = DiscographyLimited.map(function (track) {
+    // Create an array of top tracks with name and a random image URL
+    let topTracksArray = discography.map(function (track) {
       // Get a random album cover URL
-      let randomTrackImage = track.album.cover[Math.floor(Math.random() * track.album.cover.length)];
+      let randomTrackImage =
+        track.album.cover[Math.floor(Math.random() * track.album.cover.length)];
 
       return {
         trackImage: randomTrackImage.url,
@@ -69,12 +70,17 @@ $(document).ready(function () {
       };
     });
 
+    // Slice the topTracksArray to get only 5 tracks
+    topTracksArray = topTracksArray.slice(0, 5);
+
     // Display the data in the left container
     leftContainer.empty(); // Clear previous results
 
     // Create HTML elements and append them to the left container
     let heroContainer = $("<div class='hero-container'>");
-    heroContainer.append(`<img class="hero-image" src="${artistImage}" alt="${artistName}">`);
+    heroContainer.append(
+      `<img class="hero-image" src="${artistImage}" alt="${artistName}">`
+    );
     heroContainer.append(`<div class="overlay"></div>`);
     heroContainer.append(`<div class="hero-text">${artistName}</div>`);
     // Append the hero image to the herocontainer
@@ -89,30 +95,54 @@ $(document).ready(function () {
       trackList.append(
         `<div class="flex-container"> 
         <div class="flex-item">${index + 1}</div> 
-        <div class="flex-item"> <img class="track-image " src="${track.trackImage}"></div>
+        <div class="flex-item"> <img class="track-image " src="${
+          track.trackImage
+        }"></div>
         <div class="flex-item">${track.trackName}</div> 
         <div class="flex-item">${track.trackLength}</div> 
+ 
         <div class="flex-item"><a href="${song}" target="_blank">Go to playlist</a></div>
         </div> `
       );
     });
 
-
+    //stop
     // Append the entire list to the track container
-    $("<p>").text("Popular Songs").addClass("track-header").appendTo(trackContainer);
+    $("<p>")
+      .text("Popular Songs")
+      .addClass("track-header")
+      .appendTo(trackContainer);
 
     trackContainer.append(trackList);
 
     // Append the track container to the leftcontainer
     leftContainer.append(trackContainer);
+
+    // modal stuff
+    // Add a link to open the biography modal
+    leftContainer.append(
+      `<div class="flex-item"><a href="#" id="biographyLink">Biography</a></div>`
+    );
+
+    // Event listener for the biography link click
+    $("#biographyLink").on("click", function (event) {
+      event.preventDefault();
+      // Open the biography modal
+      $("#biographyModal").modal("show");
+    });
+
+    // Dynamically update the biography modal content
+    const modalBody = $("#biographyModalBody");
+    modalBody.empty(); // Clear previous content
+    modalBody.append(`<p>${biography}</p>`);
   }
 
-  // loadFromLocalStorage();
   $("#searchForm").submit(function (event) {
     event.preventDefault();
     getArtistDataByName();
   });
 
+  ///=======================================================
   // right container js code
 
   // New York Times API key and initialize the keyword with the last search term from localStorage or an empty string
@@ -195,7 +225,9 @@ $(document).ready(function () {
     <div class="card-body">
       <h4 class="card-title">${article.headline.main}</h4>
       <p class="card-text">${date.toDateString()}</p>
-      <a href="${article.web_url}" target="_blank" class="btn btn-primary">Read Full Article</a>
+      <a href="${
+        article.web_url
+      }" target="_blank" class="btn btn-primary">Read Full Article</a>
     </div>
   `;
 
