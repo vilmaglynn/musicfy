@@ -1,6 +1,7 @@
 $(document).ready(function () {
   const artistInput = $("#search-input");
   const leftContainer = $("#left-container"); // Container to display results
+  const searchHistoryContainer = $("#searchHistoryContainer");
 
   const settings = {
     method: "GET",
@@ -11,19 +12,42 @@ $(document).ready(function () {
   };
 
   // Function to save data to local storage
-  // function saveDataToLocalStorage(data) {
-  //   localStorage.setItem("artitstData", JSON.stringify(data));
-  // }
+  function saveDataToLS(artist) {
+    let artistHistory = JSON.parse(localStorage.getItem("artitstData")) || [];
+
+    const alreadyInHistory = artistHistory.find(
+      (artistFromLS) => artistFromLS === artist
+    );
+
+    if (!alreadyInHistory) {
+      artistHistory.unshift(artist);
+    }
+
+    if (artistHistory.length > 5) {
+      artistHistory.pop();
+    }
+
+    localStorage.setItem("artitstData", JSON.stringify(artistHistory));
+  }
 
   // Function to load data from local storage
-  // function loadFromLocalStorage() {
-  //   const storedData = JSON.parse(localStorage.getItem("displayedData"));
+  function loadFromLocalStorage() {
+    const artitstData = JSON.parse(localStorage.getItem("artitstData"));
 
-  //   if (storedData) {
-  //     // Display the stored data on the page
-  //     displayArtistData(storedData);
-  //   }
-  // }
+    if (artitstData) {
+      // Display the stored data on the page
+      renderSearchHistory(artitstData);
+    }
+  }
+
+  function renderSearchHistory(searchHistory) {
+    searchHistoryContainer.empty();
+    searchHistory.forEach((artist) => {
+      const searchBtn = $("<button>");
+      searchBtn.text(artist);
+      searchHistoryContainer.append(searchBtn);
+    });
+  }
 
   function getArtistDataByName() {
     const artist = artistInput.val();
@@ -33,6 +57,8 @@ $(document).ready(function () {
       .then((data) => {
         getArtistDataByID(data.id);
       });
+    saveDataToLS(artist);
+    loadFromLocalStorage();
   }
 
   function getArtistDataByID(artistID) {
@@ -56,7 +82,8 @@ $(document).ready(function () {
     // Create an array of top tracks with name and a random image URL
     let topTracksArray = discography.map(function (track) {
       // Get a random album cover URL
-      let randomTrackImage = track.album.cover[Math.floor(Math.random() * track.album.cover.length)];
+      let randomTrackImage =
+        track.album.cover[Math.floor(Math.random() * track.album.cover.length)];
 
       return {
         trackImage: randomTrackImage.url,
@@ -70,7 +97,9 @@ $(document).ready(function () {
 
     // Create HTML elements and append them to the left container
     let heroContainer = $("<div class='hero-container'>");
-    heroContainer.append(`<img class="hero-image" src="${artistImage}" alt="${artistName}">`);
+    heroContainer.append(
+      `<img class="hero-image" src="${artistImage}" alt="${artistName}">`
+    );
     heroContainer.append(`<div class="overlay"></div>`);
     heroContainer.append(`<div class="hero-text">${artistName}</div>`);
     // Append the hero image to the herocontainer
@@ -85,7 +114,9 @@ $(document).ready(function () {
       trackList.append(
         `<div class="flex-container"> 
         <div class="flex-item">${index + 1}</div> 
-        <div class="flex-item"> <img class="track-image " src="${track.trackImage}"></div>
+        <div class="flex-item"> <img class="track-image " src="${
+          track.trackImage
+        }"></div>
         <div class="flex-item">${track.trackName}</div> 
         <div class="flex-item">${track.trackLength}</div> 
         <div class="flex-item"><a href="${song}" target="_blank">Go to playlist</a></div>
@@ -94,7 +125,10 @@ $(document).ready(function () {
     });
 
     // Append the entire list to the track container
-    $("<p>").text("Popular Songs").addClass("track-header").appendTo(trackContainer);
+    $("<p>")
+      .text("Popular Songs")
+      .addClass("track-header")
+      .appendTo(trackContainer);
 
     trackContainer.append(trackList);
 
@@ -102,7 +136,6 @@ $(document).ready(function () {
     leftContainer.append(trackContainer);
   }
 
-  // loadFromLocalStorage();
   $("#searchForm").submit(function (event) {
     event.preventDefault();
     getArtistDataByName();
@@ -190,7 +223,9 @@ $(document).ready(function () {
     <div class="card-body">
       <h4 class="card-title">${article.headline.main}</h4>
       <p class="card-text">${date.toDateString()}</p>
-      <a href="${article.web_url}" target="_blank" class="btn btn-primary">Read Full Article</a>
+      <a href="${
+        article.web_url
+      }" target="_blank" class="btn btn-primary">Read Full Article</a>
     </div>
   `;
 
@@ -215,6 +250,8 @@ $(document).ready(function () {
     e.preventDefault();
     handleSearch();
   });
+
+  loadFromLocalStorage();
 
   // Initial fetch when the page loads
 });
