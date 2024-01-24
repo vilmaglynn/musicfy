@@ -28,7 +28,7 @@
           </button>
         </form>
       </div>
-      <div class="w-50 d-flex justify-content-evenly align-items-center" id="searchHistoryContainer">
+      <div class="w-50 mt-5 d-flex justify-content-evenly align-items-center" id="searchHistoryContainer">
       </div>
     </div>
   </div>
@@ -36,22 +36,49 @@
 
 
   <!-- Containers -->
-
   <div class="container main-container">
-    <div class=" left-half">
-      <!-- <h3>Top Songs</h3> -->
-      <div id="left-container">
+    <div class="row">
+
+      <div class="col-lg-6">
+        <!-- Biography Modal -->
+        <div class="modal fade" id="biographyModal" tabindex="-1" aria-labelledby="biographyModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="biographyModalLabel">Biography</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" id="biographyModalBody">
+                <!-- Biography content will be dynamically inserted here -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content for the first column -->
+        <div id="left-container" class="container left-half">
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <!-- Content for the second column -->
+        <div id="articlesContainer" class="container right-half articles-container ">
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="container right-half articles-container" id="articlesContainer">
 
-    </div>
 
-    <!-- Include Bootstrap JS and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+
+  <!-- Include Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

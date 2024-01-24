@@ -6,7 +6,7 @@ $(document).ready(function () {
   const settings = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "e913f3ef8emsh776ddc5b5ecbbf6p1291ffjsn57259e810f11",
+      "X-RapidAPI-Key": "0eb6ded43cmsha5d707ccb45f409p13ce55jsn93085561e536",
       "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com",
     },
   };
@@ -50,6 +50,9 @@ $(document).ready(function () {
     });
   }
 
+  ///=======================================================
+  //left container js code
+
   function getArtistDataByName() {
     const artist = artistInput.val();
     const queryURL1 = `https://spotify-scraper.p.rapidapi.com/v1/artist/search?name=${artist}`;
@@ -79,6 +82,7 @@ $(document).ready(function () {
     let discography = data.discography.topTracks;
     let artistImage = data.visuals.gallery[0][0].url;
     let song = data.shareUrl;
+    let biography = data.biography;
 
     // Create an array of top tracks with name and a random image URL
     let topTracksArray = discography.map(function (track) {
@@ -92,6 +96,9 @@ $(document).ready(function () {
         trackLength: track.durationText,
       };
     });
+
+    // Slice the topTracksArray to get only 5 tracks
+    topTracksArray = topTracksArray.slice(0, 5);
 
     // Display the data in the left container
     leftContainer.empty(); // Clear previous results
@@ -120,11 +127,13 @@ $(document).ready(function () {
         }"></div>
         <div class="flex-item">${track.trackName}</div> 
         <div class="flex-item">${track.trackLength}</div> 
+ 
         <div class="flex-item"><a href="${song}" target="_blank">Go to playlist</a></div>
         </div> `
       );
     });
 
+    //stop
     // Append the entire list to the track container
     $("<p>")
       .text("Popular Songs")
@@ -135,6 +144,24 @@ $(document).ready(function () {
 
     // Append the track container to the leftcontainer
     leftContainer.append(trackContainer);
+
+    // modal stuff
+    // Add a link to open the biography modal
+    leftContainer.append(
+      `<div class="flex-item"><a href="#" id="biographyLink">Biography</a></div>`
+    );
+
+    // Event listener for the biography link click
+    $("#biographyLink").on("click", function (event) {
+      event.preventDefault();
+      // Open the biography modal
+      $("#biographyModal").modal("show");
+    });
+
+    // Dynamically update the biography modal content
+    const modalBody = $("#biographyModalBody");
+    modalBody.empty(); // Clear previous content
+    modalBody.append(`<p>${biography}</p>`);
   }
 
   $("#searchForm").submit(function (event) {
@@ -142,6 +169,7 @@ $(document).ready(function () {
     getArtistDataByName();
   });
 
+  ///=======================================================
   // right container js code
 
   // New York Times API key and initialize the keyword with the last search term from localStorage or an empty string

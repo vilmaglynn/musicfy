@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
 body {
-  background-color: #cf2f2f;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   border: 0;
   margin: 0;
+  background-color: #000000;
 }
 
 h3 {
@@ -20,16 +20,20 @@ h3:hover {
 
 #hero-bg {
   /* background-color: rgb(34, 165, 94) !important; */
-  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(14, 1, 1, 1) 0%, rgba(13, 1, 1, 1) 25%, rgba(14, 69, 26, 1) 45%, rgba(1, 1, 24, 1) 100%, rgba(18, 64, 6, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(14, 1, 1, 1) 0%,
+    rgba(13, 1, 1, 1) 25%,
+    rgba(14, 69, 26, 1) 45%,
+    rgba(1, 1, 24, 1) 100%,
+    rgba(18, 64, 6, 1) 100%
+  );
   /* border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px; */
   /* border-top-right-radius: 30px;
   border-top-left-radius: 30px; */
   border-bottom: 3px solid white;
-}
-
-.height {
-  height: 20vh;
 }
 
 .search {
@@ -91,27 +95,22 @@ h3:hover {
 }
 
 .main-container {
-  width: 100%; /* Ensure the main container takes up the full width of its parent */
-  /* height: 500px; */
-  display: flex;
-  justify-content: space-between; /* Separate the left and right containers */
-  align-items: flex-start; /* Align items at the top within the main container */
-  border-radius: 25px !important;
-  border: 10px solid green;
+  max-width: 1400px;
 }
 
 .left-half,
 .right-half {
-  width: 50%;
-  padding: 10px;
+  max-width: 95%;
+  padding: 40px;
   border-radius: 5px;
-  text-align: center;
+  /* text-align: center; */
   margin-top: 50px;
   height: 800px;
-  align-items: center;
-  justify-content: center;
+  overflow: scroll;
+  /* align-items: center;
+  justify-content: center; */
   /* background-color: rgb(255, 255, 255) !important; */
-  background-color: #070707 !important;
+  background-color: #1e1e1e !important;
   color: white !important;
   /* border: 1px solid white; */
 }
@@ -198,15 +197,16 @@ h3:hover {
 /* left-container*/
 
 .flex-container {
-  display: grid;
-  grid-template-columns: 40px 150px auto 100px 100px;
-  grid-template-rows: auto;
-  gap: 5px;
+  gap: 3px;
   transition: background-color 0.8s ease;
+  display: flex;
+  justify-content: left;
+  flex: wrap;
+  overflow-x: auto; /* Add horizontal scrolling */
 }
 
 .flex-container a {
-  color: rgb(32, 155, 32);
+  color: rgb(39, 39, 39);
   text-decoration: none;
   font-weight: 900;
 }
@@ -221,12 +221,16 @@ h3:hover {
   margin: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 100px;
+}
+/* Select the first flex-item within the flex-container */
+.flex-item:first-child {
+  min-width: 20px !important;
 }
 
-.flex-container > div:first-child {
-  max-width: 20px; /* Set the specific size for the first column */
+.flex-item:nth-child(3) {
+  min-width: 150px; /* Adjust the size as needed */
 }
-
 /* for each track */
 .track-image {
   width: 100px;
@@ -238,7 +242,7 @@ h3:hover {
 .track-container {
   background-color: rgb(47, 48, 47);
   color: white;
-  padding: 20px;
+  padding: 10px;
 }
 
 .track-header {
@@ -267,19 +271,24 @@ h3:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the last parameter (alpha) to control darkness */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust the last parameter (alpha) to control darkness */
 }
 
 .hero-text {
   border-radius: 5px;
   padding: 20px;
   position: absolute;
-  top: 50%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
-  font-size: 100px;
+  font-size: 40px;
   margin: 0;
   background-color: rgba(47, 48, 47, 0.84);
 }
