@@ -20,15 +20,7 @@ h3:hover {
 
 #hero-bg {
   /* background-color: rgb(34, 165, 94) !important; */
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(14, 1, 1, 1) 0%,
-    rgba(13, 1, 1, 1) 25%,
-    rgba(14, 69, 26, 1) 45%,
-    rgba(1, 1, 24, 1) 100%,
-    rgba(18, 64, 6, 1) 100%
-  );
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(14, 1, 1, 1) 0%, rgba(13, 1, 1, 1) 25%, rgba(14, 69, 26, 1) 45%, rgba(1, 1, 24, 1) 100%, rgba(18, 64, 6, 1) 100%);
   /* border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px; */
   /* border-top-right-radius: 30px;
@@ -107,8 +99,6 @@ h3:hover {
   margin-top: 50px;
   height: 800px;
   overflow: scroll;
-  /* align-items: center;
-  justify-content: center; */
   /* background-color: rgb(255, 255, 255) !important; */
   background-color: #1e1e1e !important;
   color: white !important;
@@ -147,37 +137,6 @@ h3:hover {
   color: rgb(46, 194, 113);
 }
 
-/* .button-two {
-  background-color: rgb(95, 26, 97);
-  color: white;
-  
-}
-
-.button-three {
-  background-color: rgb(119, 200, 227);
-  color: white;
-  border: none;
-  font-weight: 500;
-}
-
-.button-four {
-  background-color: rgb(203, 161, 10);
-  color: white;
-  border: none;
-}
-
-.button-five {
-  background-color: #0e3f1a;
-  color: white;
-  border: none;
-}
-
-.button-six {
-  background-color: #951212;
-  color: white;
-  border: none;
-} */
-
 .news-button:hover {
   background: #0e3f1a !important;
   border: none;
@@ -206,11 +165,10 @@ h3:hover {
 }
 
 .flex-container a {
-  color: rgb(39, 39, 39);
+  color: rgb(32, 155, 32);
   text-decoration: none;
   font-weight: 900;
 }
-
 .flex-container:hover {
   background-color: rgba(148, 148, 148, 0.328);
   border-radius: 5px;
@@ -271,12 +229,7 @@ h3:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.5
-  ); /* Adjust the last parameter (alpha) to control darkness */
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the last parameter (alpha) to control darkness */
 }
 
 .hero-text {

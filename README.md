@@ -16,7 +16,7 @@ Edx bootcamp challenge - app that searches for artist album and related articles
 
 ## UserStory
 
-As a music enthusiast, I want to explore details about my favourite artists and discover their popular tracks along with relevant information. I should be able to search for an artist and see a display of their top tracks, including images and their top news.
+As a music enthusiast, I want to explore details about my favourite artists and discover their popular tracks along with relevant information. I should be able to search for an artist and see a display of their top tracks, including images and their top news. After the search artist biography is presesnted as a button which can be clicked and viewed as modal. Moreover, the artist information and the articles gets saved in a local storage and displayed as a button appended to the search.
 
 ## AcceptanceCriteria
 
@@ -30,8 +30,9 @@ Top Tracks Information:Each top track entry should include:
     The name of the track.
     The duration or length of the track.
     A link to the artist's playlist or song on Spotify
+    A Biography modal button displays Biography of the related artist
 
-Top news: On the right side it should give me the 6 news articles related to this artist which displays article title, published date a link to view the artcile through a button.
+Top news: On the right side it should give me the 6 news articles related to this artist which displays article title, published date a link to view the artcile through a button. A biography button is viewed at the bottom of artist info as a modal button and also local storage saves all artist information and articles saved as a button on screen underneath the saerch box.
 
 ## Screenshots
 
@@ -41,6 +42,12 @@ Here are the screenshots of the deployed application:
 ![Screenshot2](./assets/images/Screenshot%202024-01-24%20at%209.36.00%20pm.png)
 
 ![Screenshot3](./assets/images/Screenshot%202024-01-24%20at%209.36.19%20pm.png)
+
+![Screenshot4](./assets/images/Screenshot%202024-01-25%20at%205.43.33%20pm.png)
+
+![Screenshot5](./assets/images/Screenshot%202024-01-25%20at%205.43.46%20pm.png)
+
+![Screenshot6](./assets/images/Screenshot%202024-01-25%20at%205.43.58%20pm.png)
 
 ## Technologies
 
@@ -53,9 +60,9 @@ Server side API
 
 ## Author
 
-1. Kha Nguyen(https://github.com/Xero-N)
-2. Vilma Hernandez(https://github.com/vilmaglynn)
-3. Grace(https://github.com/grace-apa)
+1. Kha Nguyen (https://github.com/Xero-N)
+2. Vilma Hernandez (https://github.com/vilmaglynn)
+3. Grace (https://github.com/grace-apa)
 4. Md Tanvirul Islam (https://github.com/prodeveloper2023)
 
 ## Credits
